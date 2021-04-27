@@ -22,6 +22,8 @@ public class BattleManager : MonoBehaviour
     public string menuSelect;
     [FMODUnity.EventRef]
     public string HealthWarning;
+    [FMODUnity.EventRef]
+    public string BuildUp;
 
     //HUD Accessors
     public GameObject combatBox;
@@ -58,12 +60,18 @@ public class BattleManager : MonoBehaviour
 
     public Availstate state;
 
+    private Button attackButton;
+    private Button spcAttackButton;
+
     /// <summary>
     /// Player begins combat full health and stats
     /// </summary>
     public void BeginBattle()
     {
         SwitchToBattle();
+
+        attackButton = GameObject.Find("Attack").GetComponent<Button>();
+        spcAttackButton = GameObject.Find("Special Attack").GetComponent<Button>();
 
         inBattle = true;
         Health = 25;
@@ -111,26 +119,34 @@ public class BattleManager : MonoBehaviour
     void Update()
     {
         
-
         healthText.text = "Health: " + Health;
 
     }
 
     public void OnAttackButton()
     {
+
+        attackButton.enabled = false;
+        spcAttackButton.enabled = false;
         selector = 0;
         StartCoroutine(thePlayerTurn());
     }
 
     public void OnspcAttackButton()
     {
+
+        attackButton.enabled = false;
+        spcAttackButton.enabled = false;
         selector = 1;
         StartCoroutine(thePlayerTurn());
     }
 
     public void buttonEnter()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(menuSelect);
+        if(attackButton.enabled)
+        {
+            FMODUnity.RuntimeManager.PlayOneShot(menuSelect);
+        }
     }
 
     private int Attack(int pts)
@@ -174,14 +190,20 @@ public class BattleManager : MonoBehaviour
 
     public IEnumerator theEnemyTurn()
     {
+        attackButton.enabled = false;
+        spcAttackButton.enabled = false;
+        FMODUnity.RuntimeManager.PlayOneShot(BuildUp);
         yield return new WaitForSeconds(2f);
         Health -= isHit(4);
+
+        attackButton.enabled = true;
+        spcAttackButton.enabled = true;
     }
 
     public IEnumerator thePlayerTurn()
     {
-
-        yield return new WaitForSeconds(1f);
+        FMODUnity.RuntimeManager.PlayOneShot(BuildUp);
+        yield return new WaitForSeconds(2f);
         if (selector == 0)
         {
             EnHealth -= Attack(4);
