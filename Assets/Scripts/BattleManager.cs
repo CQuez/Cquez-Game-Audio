@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BattleManager : MonoBehaviour
 {
@@ -24,6 +25,15 @@ public class BattleManager : MonoBehaviour
     public string HealthWarning;
     [FMODUnity.EventRef]
     public string BuildUp;
+    [FMODUnity.EventRef]
+    public string EnemBuildUp;
+
+    //Music
+    [FMODUnity.EventRef]
+    public string CombatMusic;
+
+    FMOD.Studio.EventInstance HWarn;
+    FMOD.Studio.EventInstance CMusic;
 
     //HUD Accessors
     public GameObject combatBox;
@@ -43,7 +53,6 @@ public class BattleManager : MonoBehaviour
 
     //Enemy Stats
     int EnHealth = 10;
-    int EnAttack = 5;
 
     public int selector;
 
@@ -78,6 +87,15 @@ public class BattleManager : MonoBehaviour
         attack = 3;
 
         EnHealth = 10;
+        
+
+        HWarn = FMODUnity.RuntimeManager.CreateInstance(HealthWarning);
+        HWarn.start();
+        HWarn.setParameterByName("Health Warning", 10f);
+
+        CMusic = FMODUnity.RuntimeManager.CreateInstance(CombatMusic);
+        CMusic.start();
+        CMusic.setParameterByName("Combat Music Level", 1f);
 
         //critChance = .10f;
         missChance = .50f;
@@ -121,6 +139,20 @@ public class BattleManager : MonoBehaviour
         
         healthText.text = "Health: " + Health;
 
+
+        if (Health < 18)
+        {
+            HWarn.setParameterByName("Health Warning", 50f);
+        }
+        if (Health < 11)
+        {
+            HWarn.setParameterByName("Health Warning", 100f);
+        }
+        else if(inBattle == false)
+        {
+            HWarn.setParameterByName("Health Warning", 0f);
+            CMusic.setParameterByName("Combat Music Level", 0f);
+        }
     }
 
     public void OnAttackButton()
@@ -156,12 +188,12 @@ public class BattleManager : MonoBehaviour
         if (result < (missChance/100))
         {
             FMODUnity.RuntimeManager.PlayOneShot(missSound);
-            ResultText.text = "Result: MISSED";
+            ResultText.text = "Result: PLAYER MISSED";
             return 0;
         }
 
         FMODUnity.RuntimeManager.PlayOneShot(hitSound);
-        ResultText.text = "Result: ENEMY HIT FOR " + attack + " DMG.";
+        ResultText.text = "Result: ENEMY IS HIT FOR " + attack + " DMG.";
         return pts;
     }
 
@@ -184,7 +216,7 @@ public class BattleManager : MonoBehaviour
         }
 
         FMODUnity.RuntimeManager.PlayOneShot(recievehitSound);
-        ResultText.text = "Result: HIT FOR " + pts + " DMG.";
+        ResultText.text = "Result: PLAYER IS HIT FOR " + pts + " DMG.";
         return pts;
     }
 
@@ -192,8 +224,8 @@ public class BattleManager : MonoBehaviour
     {
         attackButton.enabled = false;
         spcAttackButton.enabled = false;
-        FMODUnity.RuntimeManager.PlayOneShot(BuildUp);
-        yield return new WaitForSeconds(2f);
+        FMODUnity.RuntimeManager.PlayOneShot(EnemBuildUp);
+        yield return new WaitForSeconds(3f);
         Health -= isHit(4);
 
         attackButton.enabled = true;
@@ -213,9 +245,16 @@ public class BattleManager : MonoBehaviour
             EnHealth -= spcAttack(7);
         }
 
+
         if (EnHealth <= 0)
         {
+            FMODUnity.RuntimeManager.PlayOneShot(monsterDeathSound);
             EndBattle();
+        }
+        else if (Health <= 0)
+        {
+            EndBattle();
+            SceneManager.LoadScene("EndOfLevel");
         }
         else
         {

@@ -15,6 +15,9 @@ public class PlayerControl : MonoBehaviour
     Vector3 direction;
     Vector3 prevLoc;
 
+    //Player Sprite
+    public SpriteRenderer playerSprite;
+    public Sprite[] spriteArray;
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +35,32 @@ public class PlayerControl : MonoBehaviour
         float locationY = Input.GetAxisRaw("Vertical");
 
 
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            playerSprite.sprite = spriteArray[0];
+        }
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            playerSprite.flipX = true;
+            playerSprite.sprite = spriteArray[2];
+        }
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            playerSprite.sprite = spriteArray[1];
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            playerSprite.flipX = false;
+            playerSprite.sprite = spriteArray[2];
+        }
+
+
         //Arrow or WASD Input movement to transform the player
         if (locationX > 0.1f || locationX < -0.1f)
         {
             playerisMoving = true;
         }
-        if (locationY > 0.1f || locationY < -0.1f)
+        else if (locationY > 0.1f || locationY < -0.1f)
         {
             playerisMoving = true;
         }
