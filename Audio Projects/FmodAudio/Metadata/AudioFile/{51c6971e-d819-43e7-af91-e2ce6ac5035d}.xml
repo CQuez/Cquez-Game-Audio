@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{51c6971e-d819-43e7-af91-e2ce6ac5035d}">
+		<property name="assetPath">
+			<value>2019-12-11_-_Retro_Platforming_-_David_Fesliyan.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>130.92571428571429</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{befffd5c-e1b5-4658-ad2d-a246a21bc840}</destination>
+		</relationship>
+	</object>
+</objects>

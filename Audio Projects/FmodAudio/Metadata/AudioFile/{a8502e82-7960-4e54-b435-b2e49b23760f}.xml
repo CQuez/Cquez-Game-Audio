@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{a8502e82-7960-4e54-b435-b2e49b23760f}">
+		<property name="assetPath">
+			<value>361053__jorge0000__wind-noise.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>240</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{befffd5c-e1b5-4658-ad2d-a246a21bc840}</destination>
+		</relationship>
+	</object>
+</objects>

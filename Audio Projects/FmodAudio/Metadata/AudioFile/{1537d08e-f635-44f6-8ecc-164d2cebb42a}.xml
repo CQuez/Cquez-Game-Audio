@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{1537d08e-f635-44f6-8ecc-164d2cebb42a}">
+		<property name="assetPath">
+			<value>Forrest Background.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>9.8802721088435366</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{befffd5c-e1b5-4658-ad2d-a246a21bc840}</destination>
+		</relationship>
+	</object>
+</objects>

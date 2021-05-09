@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{2ff226ab-4a05-48f5-b886-ca9876cf0b52}">
+		<property name="name">
+			<value>Combat Music Level</value>
+		</property>
+		<relationship name="folder">
+			<destination>{daf5bacb-9b23-485b-aac8-ccb175ce2f4b}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{3a7c26ee-9a54-4fef-b245-a410fd2ae799}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{3a7c26ee-9a54-4fef-b245-a410fd2ae799}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<relationship name="automators">
+			<destination>{2949c8f0-ef06-4633-a21f-d4e04ba7babe}</destination>
+		</relationship>
+	</object>
+	<object class="Automator" id="{2949c8f0-ef06-4633-a21f-d4e04ba7babe}">
+		<property name="nameOfPropertyBeingAutomated">
+			<value>cursorPosition</value>
+		</property>
+	</object>
+</objects>

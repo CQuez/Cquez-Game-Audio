@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="ParameterPreset" id="{aa2b0bb3-1852-4532-9c31-a3f124006ffb}">
+		<property name="name">
+			<value>Background Level</value>
+		</property>
+		<relationship name="folder">
+			<destination>{daf5bacb-9b23-485b-aac8-ccb175ce2f4b}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{442fb5fc-6fe3-4f02-96a7-ab6f0107b7b6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{442fb5fc-6fe3-4f02-96a7-ab6f0107b7b6}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

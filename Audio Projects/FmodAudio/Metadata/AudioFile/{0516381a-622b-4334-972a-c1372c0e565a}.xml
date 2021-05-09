@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.01.00">
+	<object class="AudioFile" id="{0516381a-622b-4334-972a-c1372c0e565a}">
+		<property name="assetPath">
+			<value>ChargeBuildUp.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.4485714285714286</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{befffd5c-e1b5-4658-ad2d-a246a21bc840}</destination>
+		</relationship>
+	</object>
+</objects>
